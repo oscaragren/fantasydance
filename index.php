@@ -23,7 +23,7 @@ body {font-size:16px;}
   </div>
   <div class="w3-bar-block">
     <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Tabell</a>
-    <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Välj dansare</a>
+    <a href="pick_team.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Välj dansare</a>
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Ranking</a>
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Information</a>
     <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Kontakt</a>
