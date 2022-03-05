@@ -7,7 +7,7 @@ class Dbh {
         try {
             $username = "root";
             $password = "";
-            $dbh = new PDO("mysqli:host=localhost;dbname=fantasydans", $username, $password);
+            $dbh = new PDO("mysql:host=127.0.0.1;dbname=fantasydans", $username, $password);
             return $dbh;
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";
