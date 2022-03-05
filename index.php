@@ -27,7 +27,7 @@ body {font-size:16px;}
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Ranking</a>
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Information</a>
     <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Kontakt</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logga in/Registrera</a>
+    <a href="signup.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logga in/Registrera</a>
   </div>
 </nav>
 
@@ -51,7 +51,7 @@ body {font-size:16px;}
   </div>
 
   <!-- Photo grid (modal) -->
-  <div class="w3-row-padding">	
+  <div class="w3-row-padding">
     <div class="w3-half">
       <img src="/w3images/kitchenconcrete.jpg" style="width:100%" onclick="onClick(this)" alt="Concrete meets bricks">
       <img src="/w3images/livingroom.jpg" style="width:100%" onclick="onClick(this)" alt="Light, white and tight scandinavian design">

@@ -70,7 +70,7 @@ function test_input($data) {
 
 <h2>Välj ditt lag:</h2>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">        
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
       <select name="vuxenpar_1" id="vuxenpar">
         <option value="null"></option>
         <option value="001">V.Par #1</option>
@@ -78,7 +78,7 @@ function test_input($data) {
         <option value="003">V.Par #3</option>
         <option value="004">V.Par #4</option>
       </select>
-     
+
       <select name="vuxenpar_2" id="vuxenpar">
         <option value="null"></option>
         <option value="001">V.Par #1</option>
@@ -86,7 +86,7 @@ function test_input($data) {
         <option value="003">V.Par #3</option>
         <option value="004">V.Par #4</option>
       </select>
-       
+
       <select name="seniorpar_1" id="seniorpar">
         <option value="null"></option>
         <option value="101">S.Par #1</option>
@@ -94,7 +94,7 @@ function test_input($data) {
         <option value="103">S.Par #3</option>
         <option value="104">S.Par #4</option>
       </select>
-     
+
       <select name="seniorpar_2" id="seniorpar">
         <option value="null"></option>
         <option value="101">S.Par #1</option>
