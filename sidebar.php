@@ -23,7 +23,7 @@ body {font-size:16px;}
     <h3 class="w3-padding-64"><b>FANTASY<br>DANS</b></h3>
   </div>
   <div class="w3-bar-block">
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Tabell</a>
+    <a href="table.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Tabell</a>
     <a href="#showcase" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Välj dansare</a>
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Ranking</a>
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Information</a>
