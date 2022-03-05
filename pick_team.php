@@ -50,40 +50,15 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <!-- Photo grid (modal) -->
-  <!--<div class="w3-row-padding">	
-    <div class="w3-half"><h3>Bugg Vuxen</h3>
-      <form method="post" action="my_team.php">        
-        <label for="vuxenpar_1">Välj det par du tror kommer vinna</label><br><br>
-        <select name="vuxenpar_1" id="vuxenpar">
-          <option value="null"></option>
-          <option value="Par #1">Par #1</option>
-          <option value="Par #2">Par #2</option>
-          <option value="Par #3">Par #3</option>
-          <option value="Par #4">Par #4</option>
-        </select>
-      <br><br>
-        <input type="submit" value="Lås in">
-      </form>
-    </div>-->
-
 <?php
-// define variables and set to empty values
 $vuxenpar_1 = $vuxenpar_2 = $seniorpar_1 = $seniorpar_2 = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vuxenpar_1 = test_input($_POST["vuxenpar_1"]);
-  }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vuxenpar_2 = test_input($_POST["vuxenpar_2"]);
-  }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $seniorpar_1 = test_input($_POST["seniorpar_1"]);
-  }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $seniorpar_2 = test_input($_POST["seniorpar_2"]);
-  }
-
+}
 
 function test_input($data) {
   $data = trim($data);
@@ -98,34 +73,34 @@ function test_input($data) {
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">        
       <select name="vuxenpar_1" id="vuxenpar">
         <option value="null"></option>
-        <option value="Par #1">Par #1</option>
-        <option value="Par #2">Par #2</option>
-        <option value="Par #3">Par #3</option>
-        <option value="Par #4">Par #4</option>
+        <option value="001">V.Par #1</option>
+        <option value="002">V.Par #2</option>
+        <option value="003">V.Par #3</option>
+        <option value="004">V.Par #4</option>
       </select>
      
       <select name="vuxenpar_2" id="vuxenpar">
         <option value="null"></option>
-        <option value="Par #1">Par #1</option>
-        <option value="Par #2">Par #2</option>
-        <option value="Par #3">Par #3</option>
-        <option value="Par #4">Par #4</option>
+        <option value="001">V.Par #1</option>
+        <option value="002">V.Par #2</option>
+        <option value="003">V.Par #3</option>
+        <option value="004">V.Par #4</option>
       </select>
        
       <select name="seniorpar_1" id="seniorpar">
         <option value="null"></option>
-        <option value="Par #1">Par #1</option>
-        <option value="Par #2">Par #2</option>
-        <option value="Par #3">Par #3</option>
-        <option value="Par #4">Par #4</option>
+        <option value="101">S.Par #1</option>
+        <option value="102">S.Par #2</option>
+        <option value="103">S.Par #3</option>
+        <option value="104">S.Par #4</option>
       </select>
      
       <select name="seniorpar_2" id="seniorpar">
         <option value="null"></option>
-        <option value="Par #1">Par #1</option>
-        <option value="Par #2">Par #2</option>
-        <option value="Par #3">Par #3</option>
-        <option value="Par #4">Par #4</option>
+        <option value="101">S.Par #1</option>
+        <option value="102">S.Par #2</option>
+        <option value="103">S.Par #3</option>
+        <option value="104">S.Par #4</option>
       </select>
     <br><br>
   <input type="submit" value="Lås in">
@@ -133,12 +108,14 @@ function test_input($data) {
 
 <?php
 
-echo "<h2>Ditt Lag:</h2>";
 $file = 'picks_Karlstad_2022.txt';
+file_put_contents($file, get_current_user() . "\n", FILE_APPEND | LOCK_EX);
 file_put_contents($file, $vuxenpar_1 . "\n", FILE_APPEND | LOCK_EX);
 file_put_contents($file, $vuxenpar_2 . "\n", FILE_APPEND | LOCK_EX);
 file_put_contents($file, $seniorpar_1 . "\n", FILE_APPEND | LOCK_EX);
-file_put_contents($file, $seniorpar_2 . "\n", FILE_APPEND | LOCK_EX);
+file_put_contents($file, $seniorpar_2 . "\n\n", FILE_APPEND | LOCK_EX);
+
+echo "<h2>Ditt Lag:</h2>";
 echo "Vuxenpar 1: "; echo $vuxenpar_1; echo "<br>";
 echo "Vuxenpar 2: "; echo $vuxenpar_2; echo "<br>";
 echo "Seniorpar 1: "; echo $seniorpar_1; echo "<br>";
