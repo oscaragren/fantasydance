@@ -52,6 +52,8 @@ body {font-size:16px;}
 
 <?php
 $vuxenpar_1 = $vuxenpar_2 = $seniorpar_1 = $seniorpar_2 = "";
+$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S");
+$allaSeniorPar = array("Bert_och_Britt","Roger och Ylva","Tony och Marie","Orvar och Anette");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vuxenpar_1 = test_input($_POST["vuxenpar_1"]);
@@ -68,67 +70,52 @@ function test_input($data) {
 }
 ?>
 
-<h2>Välj ditt lag:</h2>
-
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-      <select name="vuxenpar_1" id="vuxenpar">
-        <option value="null"></option>
-        <option value="001">V.Par #1</option>
-        <option value="002">V.Par #2</option>
-        <option value="003">V.Par #3</option>
-        <option value="004">V.Par #4</option>
-      </select>
 
-      <select name="vuxenpar_2" id="vuxenpar">
-        <option value="null"></option>
-        <option value="001">V.Par #1</option>
-        <option value="002">V.Par #2</option>
-        <option value="003">V.Par #3</option>
-        <option value="004">V.Par #4</option>
-      </select>
 
-      <select name="seniorpar_1" id="seniorpar">
-        <option value="null" disabled></option>
-        <option value="101">S.Par #1</option>
-        <option value="102">S.Par #2</option>
-        <option value="103">S.Par #3</option>
-        <option value="104">S.Par #4</option>
-      </select>
-
-      <select name="seniorpar_2" id="seniorpar">
-        <option value="null" disabled></option>
-        <option value="101">S.Par #1</option>
-        <option value="102">S.Par #2</option>
-        <option value="103">S.Par #3</option>
-        <option value="104">S.Par #4</option>
-      </select>
-    <br><br>
-  <input type="submit" value="Lås in">
-</form>
-
-<select name="years">
-
+<select name="vuxenpar_1" id="VuxenSelect" class="preferenceSelect">
 <?php 
+	echo "<option value=0></option>";
 
-for($i=1; $i<=10; $i++)
-{
-    echo "<option value=" . $i . ">" . $i . "</option>";
-}
+	foreach($allaVuxenPar as $par){
+   		echo "<option value=" . $par . ">" . $par . "</option>";
+	}
 ?> 
-     <option name="years"> </option>   
-</select> 
+</select>
 
-<input type="submit" name="submitYears" value="Year" />
+<select name ="vuxenpar_2" id="VuxenSelect2" class="preferenceSelect">
+<?php 
+	echo "<option value=0></option>";
+
+	foreach($allaVuxenPar as $par){
+    	echo "<option value=" . $par . ">" . $par . "</option>";
+	}
+?> 
+</select>
 
 
+<select name ="seniorpar_1" id="SeniorSelect" class="preferenceSelect">
+<?php 
+	echo "<option value=0></option>";
 
+	foreach($allaSeniorPar as $par){
+    	echo "<option value=" . $par . ">" . $par . "</option>";
+	}
+?> 
+</select>
 
-<?php
-for($x = 0; $x <= 10; $x++)
-{
+<select name ="seniorpar_2" id="SeniorSelect2" class="preferenceSelect">
+<?php 
+	echo "<option value=0></option>";
 
-}
-?>
+	foreach($allaSeniorPar as $par){
+    	echo "<option value=" . $par . ">" . $par . "</option>";
+	}
+?> 
+</select>
+
+<input type="submit" value="Lås in"/>
+
 
 
 <?php
@@ -158,35 +145,36 @@ echo "Seniorpar 2: "; echo $seniorpar_2; echo "<br>";
 
 
 
-  <!-- Contact -->
-  <div class="w3-container" id="contact" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-red"><b>Contact.</b></h1>
-    <hr style="width:50px;border:5px solid red" class="w3-round">
-    <p>Do you want us to style your home? Fill out the form and fill me in with the details :) We love meeting new people!</p>
-    <form action="/action_page.php" target="_blank">
-      <div class="w3-section">
-        <label>Name</label>
-        <input class="w3-input w3-border" type="text" name="Name" required>
-      </div>
-      <div class="w3-section">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="text" name="Email" required>
-      </div>
-      <div class="w3-section">
-        <label>Message</label>
-        <input class="w3-input w3-border" type="text" name="Message" required>
-      </div>
-      <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Send Message</button>
-    </form>
-  </div>
-
 <!-- End page content -->
 </div>
 
 <!-- W3.CSS Container -->
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
 <script>
+
+
+ $(document).ready(function() {
+        $(".preferenceSelect").change(function() {
+            // Get the selected value
+            var selected = $("option:selected", $(this)).val();
+            // Get the ID of this element
+            var thisID = $(this).prop("id");
+            // Reset so all values are showing:
+            $(".preferenceSelect option").each(function() {
+                $(this).prop("disabled", false);
+            });
+            $(".preferenceSelect").each(function() {
+                if ($(this).prop("id") != thisID) {
+                    $("option[value='" + selected + "']", $(this)).prop("disabled", true);
+                }
+            });
+
+        });
+    });
 
 
 // Script to open and close sidebar
