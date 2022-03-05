@@ -134,6 +134,11 @@ function test_input($data) {
 <?php
 
 echo "<h2>Ditt Lag:</h2>";
+$file = 'picks_Karlstad_2022.txt';
+file_put_contents($file, $vuxenpar_1 . "\n", FILE_APPEND | LOCK_EX);
+file_put_contents($file, $vuxenpar_2 . "\n", FILE_APPEND | LOCK_EX);
+file_put_contents($file, $seniorpar_1 . "\n", FILE_APPEND | LOCK_EX);
+file_put_contents($file, $seniorpar_2 . "\n", FILE_APPEND | LOCK_EX);
 echo "Vuxenpar 1: "; echo $vuxenpar_1; echo "<br>";
 echo "Vuxenpar 2: "; echo $vuxenpar_2; echo "<br>";
 echo "Seniorpar 1: "; echo $seniorpar_1; echo "<br>";
