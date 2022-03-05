@@ -88,7 +88,7 @@ function test_input($data) {
       </select>
 
       <select name="seniorpar_1" id="seniorpar">
-        <option value="null"></option>
+        <option value="null" disabled></option>
         <option value="101">S.Par #1</option>
         <option value="102">S.Par #2</option>
         <option value="103">S.Par #3</option>
@@ -96,7 +96,7 @@ function test_input($data) {
       </select>
 
       <select name="seniorpar_2" id="seniorpar">
-        <option value="null"></option>
+        <option value="null" disabled></option>
         <option value="101">S.Par #1</option>
         <option value="102">S.Par #2</option>
         <option value="103">S.Par #3</option>
@@ -106,10 +106,34 @@ function test_input($data) {
   <input type="submit" value="Lås in">
 </form>
 
-<?php
+<select name="years">
 
+<?php 
+
+for($i=1; $i<=10; $i++)
+{
+    echo "<option value=" . $i . ">" . $i . "</option>";
+}
+?> 
+     <option name="years"> </option>   
+</select> 
+
+<input type="submit" name="submitYears" value="Year" />
+
+
+
+
+<?php
+for($x = 0; $x <= 10; $x++)
+{
+
+}
+?>
+
+
+<?php
 $file = 'picks_Karlstad_2022.txt';
-file_put_contents($file, get_current_user() . "\n", FILE_APPEND | LOCK_EX);
+file_put_contents($file, get_current_user() . "\n", FILE_APPEND | LOCK_EX); #Spara picksen till konto - detta är fel funktion.
 file_put_contents($file, $vuxenpar_1 . "\n", FILE_APPEND | LOCK_EX);
 file_put_contents($file, $vuxenpar_2 . "\n", FILE_APPEND | LOCK_EX);
 file_put_contents($file, $seniorpar_1 . "\n", FILE_APPEND | LOCK_EX);
