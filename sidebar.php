@@ -28,7 +28,21 @@ body {font-size:16px;}
     <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Ranking</a>
     <a href="#designers" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Information</a>
     <a href="#packages" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Kontakt</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logga in/Registrera</a>
+    <?php
+        if (isset($_SESSION["userid"]))
+        {
+    ?>
+    <a href="signup.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><?php echo $_SESSION["useruid"]; ?></a>
+    <a href="includes/logout.inc.php" class="something">LOGGA UT</a>
+    <?php
+        }
+        else {
+    ?>
+    <a href="signup.php">REGISTRERA</a>
+    <a href="signup.php">LOGIN</a>
+    <?php
+        }
+    ?>
   </div>
 </nav>
 
