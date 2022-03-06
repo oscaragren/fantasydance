@@ -74,44 +74,44 @@ function test_input($data) {
 
 
 <select name="vuxenpar_1" id="VuxenSelect" class="preferenceSelect">
-<?php 
+<?php
 	echo "<option value=0></option>";
 
 	foreach($allaVuxenPar as $par){
    		echo "<option value=" . $par . ">" . $par . "</option>";
 	}
-?> 
+?>
 </select>
 
 <select name ="vuxenpar_2" id="VuxenSelect2" class="preferenceSelect">
-<?php 
+<?php
 	echo "<option value=0></option>";
 
 	foreach($allaVuxenPar as $par){
     	echo "<option value=" . $par . ">" . $par . "</option>";
 	}
-?> 
+?>
 </select>
 
 
 <select name ="seniorpar_1" id="SeniorSelect" class="preferenceSelect">
-<?php 
+<?php
 	echo "<option value=0></option>";
 
 	foreach($allaSeniorPar as $par){
     	echo "<option value=" . $par . ">" . $par . "</option>";
 	}
-?> 
+?>
 </select>
 
 <select name ="seniorpar_2" id="SeniorSelect2" class="preferenceSelect">
-<?php 
+<?php
 	echo "<option value=0></option>";
 
 	foreach($allaSeniorPar as $par){
     	echo "<option value=" . $par . ">" . $par . "</option>";
 	}
-?> 
+?>
 </select>
 
 <input type="submit" value="Lås in"/>
