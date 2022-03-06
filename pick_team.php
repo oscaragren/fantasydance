@@ -50,16 +50,18 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
+
+
 <?php
-$vuxenpar_1 = $vuxenpar_2 = $seniorpar_1 = $seniorpar_2 = "";
-$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S");
-$allaSeniorPar = array("Bert_och_Britt","Roger och Ylva","Tony och Marie","Orvar och Anette");
+$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S","Tobias&Hanna");
+$allaSeniorPar = array("Bert_och_Britt","Roger_och_Ylva","Tony_och_Marie","Orvar_och_Anette","Tomas_och_Helen","Henric_och_Joanna");
+$vuxenpar[] = [];
+#$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S");
+#$allaSeniorPar = array("Bert_och_Britt","Roger och Ylva","Tony och Marie","Orvar och Anette");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $vuxenpar_1 = test_input($_POST["vuxenpar_1"]);
-    $vuxenpar_2 = test_input($_POST["vuxenpar_2"]);
-    $seniorpar_1 = test_input($_POST["seniorpar_1"]);
-    $seniorpar_2 = test_input($_POST["seniorpar_2"]);
+    $vuxenpar[] = test_input($_POST["vuxenpar[]"]);
+    $seniorpar[] = test_input($_POST["seniorpar_1"]);
 }
 
 function test_input($data) {
@@ -70,68 +72,61 @@ function test_input($data) {
 }
 ?>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <div class="myform-container">
+
+    <form action="" method="post" class="mb-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      <h3>Välj tre vuxenpar och tre 35+par!</h3>
+      <select name="vuxenpar[]" multiple class="form-control">
+        <?php 
+          echo "<option value=0 disabled>Välj vuxenpar</option>";
+            foreach($allaVuxenPar as $par){
+              echo "<option value=" . $par . ">" . $par . "</option>";
+            }
+        ?> 
+      </select>
+
+      <select name="seniorpar[]" multiple class="form-control">
+        <?php 
+          echo "<option value=0 disabled>Välj 35+par</option>";
+            foreach($allaSeniorPar as $par){
+              echo "<option value=" . $par . ">" . $par . "</option>";
+            }
+        ?> 
+      </select>
+
+      <div>
+          <br>
+          <input type="submit" name="submit" vlaue="Choose options">
+      </div>
+
+    </form>
 
 
-<select name="vuxenpar_1" id="VuxenSelect" class="preferenceSelect">
-<?php 
-	echo "<option value=0></option>";
+    <?php
+    echo "<br><h3>Ditt lag:</h3>";
+    $file = 'picks_Karlstad_2022.txt';
+    if (isset($_POST['submit'])) {
+        if (sizeof($_POST['vuxenpar']) == 3 && sizeof($_POST['seniorpar']) == 3){
+            echo "<br><h4>Dina vuxenpar:</h4>";
+            foreach ($_POST['vuxenpar'] as $selected) {
+                file_put_contents($file, $selected . "\n", FILE_APPEND | LOCK_EX);
+                echo '<p class="select-tag mt-3">' . $selected . '</p>';
+            }
+            echo "<br><h4>Dina 35+par:</h4>";
+            foreach ($_POST['seniorpar'] as $selected) {
+                file_put_contents($file, $selected . "\n", FILE_APPEND | LOCK_EX);
+                echo '<p class="select-tag mt-3">' . $selected . '</p>';
+            }
+        } else {
+            echo '<p class="error alert alert-danger mt-3">Vänligen välj 3 par i respektive klass.</p>';
+        }
+    }
+    file_put_contents($file, "\n", FILE_APPEND | LOCK_EX);
 
-	foreach($allaVuxenPar as $par){
-   		echo "<option value=" . $par . ">" . $par . "</option>";
-	}
-?> 
-</select>
+    ?>
 
-<select name ="vuxenpar_2" id="VuxenSelect2" class="preferenceSelect">
-<?php 
-	echo "<option value=0></option>";
+   </div>
 
-	foreach($allaVuxenPar as $par){
-    	echo "<option value=" . $par . ">" . $par . "</option>";
-	}
-?> 
-</select>
-
-
-<select name ="seniorpar_1" id="SeniorSelect" class="preferenceSelect">
-<?php 
-	echo "<option value=0></option>";
-
-	foreach($allaSeniorPar as $par){
-    	echo "<option value=" . $par . ">" . $par . "</option>";
-	}
-?> 
-</select>
-
-<select name ="seniorpar_2" id="SeniorSelect2" class="preferenceSelect">
-<?php 
-	echo "<option value=0></option>";
-
-	foreach($allaSeniorPar as $par){
-    	echo "<option value=" . $par . ">" . $par . "</option>";
-	}
-?> 
-</select>
-
-<input type="submit" value="Lås in"/>
-
-
-
-<?php
-$file = 'picks_Karlstad_2022.txt';
-file_put_contents($file, get_current_user() . "\n", FILE_APPEND | LOCK_EX); #Spara picksen till konto - detta är fel funktion.
-file_put_contents($file, $vuxenpar_1 . "\n", FILE_APPEND | LOCK_EX);
-file_put_contents($file, $vuxenpar_2 . "\n", FILE_APPEND | LOCK_EX);
-file_put_contents($file, $seniorpar_1 . "\n", FILE_APPEND | LOCK_EX);
-file_put_contents($file, $seniorpar_2 . "\n\n", FILE_APPEND | LOCK_EX);
-
-echo "<h2>Ditt Lag:</h2>";
-echo "Vuxenpar 1: "; echo $vuxenpar_1; echo "<br>";
-echo "Vuxenpar 2: "; echo $vuxenpar_2; echo "<br>";
-echo "Seniorpar 1: "; echo $seniorpar_1; echo "<br>";
-echo "Seniorpar 2: "; echo $seniorpar_2; echo "<br>";
-?>
 
   <!-- Modal for full size images on click-->
   <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
@@ -152,12 +147,27 @@ echo "Seniorpar 2: "; echo $seniorpar_2; echo "<br>";
 <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
 
+$('option').mousedown(function(e) {
+    e.preventDefault();
+    $(this).toggleClass('selected');
+  
+    $(this).prop('selected', !$(this).prop('selected'));
+    return false;
+});
 
- $(document).ready(function() {
+
+/*$(document).ready(function(){
+  $("#selectboxID").change(function() {
+     $("#formID").submit();
+  });
+});
+*/
+
+/* $(document).ready(function() {
         $(".preferenceSelect").change(function() {
             // Get the selected value
             var selected = $("option:selected", $(this)).val();
@@ -175,7 +185,7 @@ echo "Seniorpar 2: "; echo $seniorpar_2; echo "<br>";
 
         });
     });
-
+*/
 
 // Script to open and close sidebar
 function w3_open() {
