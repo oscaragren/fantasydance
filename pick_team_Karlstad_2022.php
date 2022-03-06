@@ -53,11 +53,10 @@ body {font-size:16px;}
 
 
 <?php
-$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S","Tobias&Hanna");
-$allaSeniorPar = array("Bert_och_Britt","Roger_och_Ylva","Tony_och_Marie","Orvar_och_Anette","Tomas_och_Helen","Henric_och_Joanna");
-$vuxenpar[] = [];
-#$allaVuxenPar = array("Karl&Bettan","J&V","J&C","O&S");
-#$allaSeniorPar = array("Bert_och_Britt","Roger och Ylva","Tony och Marie","Orvar och Anette");
+$allaVuxenPar = array("Karl&Elizabeth","Jesper&Veronika","Jonas&Cajsa","Oscar&Sofia","Tobias&Hanna","Conrad&Matilda");
+$allaSeniorPar = array("Bert&Britt","Roger&Ylva","Tony&Marie","Orvar&Anette","Tomas&Helen","Henric&Joanna");
+$vuxenpar[] = $seniorpar[] = [];
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vuxenpar[] = test_input($_POST["vuxenpar[]"]);
@@ -76,7 +75,7 @@ function test_input($data) {
 
     <form action="" method="post" class="mb-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
       <h3>Välj tre vuxenpar och tre 35+par!</h3>
-      <select name="vuxenpar[]" multiple class="form-control">
+      <select name="vuxenpar[]" multiple class="form-control" style="width:30%;">
         <?php 
           echo "<option value=0 disabled>Välj vuxenpar</option>";
             foreach($allaVuxenPar as $par){
@@ -85,7 +84,7 @@ function test_input($data) {
         ?> 
       </select>
 
-      <select name="seniorpar[]" multiple class="form-control">
+      <select name="seniorpar[]" multiple class="form-control" style="width:30%;">
         <?php 
           echo "<option value=0 disabled>Välj 35+par</option>";
             foreach($allaSeniorPar as $par){
